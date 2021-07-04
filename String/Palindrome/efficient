@@ -1,0 +1,16 @@
+int isPlaindrome(string S)
+	{
+	    // Your code goes here
+	    int high = 0;
+    int low = S.length() - 1;
+    
+    while(high <= low)
+    {
+        if(S[high] != S[low])
+        return 0;
+        
+        high++;
+        low--;
+    }
+    return 1;
+	}
