@@ -1,5 +1,6 @@
 bool search(string pat, string txt, int q) 
 { 
+	//d = 256  q = 101
 	//n is the length of txt and m is the length of pat 
 	int n = txt.length(); 
 	int m = pat.length();
@@ -10,6 +11,7 @@ bool search(string pat, string txt, int q)
 	    h = (h * d)%q;
 	    
 	//calculate the first windows
+	//horners rule
 	int t = 0, p = 0; //'t' will store the hash code of txt and 'p' will store the hash code of pat
 	for(int i = 0; i < m; i++)
 	{
