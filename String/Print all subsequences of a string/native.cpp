@@ -16,4 +16,12 @@ int main(int argc, char const *argv[])
         
     }
     
+    //string substr (size_t pos, size_t len) const;
+//     Parameters:
+//     pos: Position of the first character to be copied.
+//     len: Length of the sub-string.
+//     size_t: It is an unsigned integral type.
+
+//     Return value: It returns a string object.
+    
 }
