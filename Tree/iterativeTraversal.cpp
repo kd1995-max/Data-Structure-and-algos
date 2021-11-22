@@ -1,3 +1,15 @@
+#include<bits/stdc++.h>
+
+
+using namespace std;
+
+struct node
+{
+    int data;
+    struct node *left;
+    struct node *right;
+};
+
 void inorder(struct node *root)
 {
    if(root)
@@ -67,28 +79,92 @@ void postorder(struct node *root)
     }
 }
 
-//postorder traversal using stack data structure
-void postorder_stack(struct node *root)
+void postorder_stack(node* root)
 {
-    stack<struct node *> s;
-    struct node *temp;
-    while(root || !s.empty())
+    // create an empty stack and push the root node
+    stack<node*> s;
+    s.push(root);
+ 
+    // create another stack to store postorder traversal
+    stack<int> out;
+ 
+    // loop till stack is empty
+    while (!s.empty())
     {
-        while(root)
-        {
-            s.push(root);
-            root=root->left;
-        }
-        temp=s.top();
+        // pop a node from the stack and push the data into the output stack
+        node* curr = s.top();
         s.pop();
-        if(temp->right==NULL)
-        {
-            cout<<temp->data<<" ";
+ 
+        out.push(curr->data);
+ 
+        // push the left and right child of the popped node into the stack
+        if (curr->left) {
+            s.push(curr->left);
         }
-        else
-        {
-            s.push(temp);
-            root=temp->right;
+ 
+        if (curr->right) {
+            s.push(curr->right);
         }
     }
+ 
+    // print postorder traversal
+    while (!out.empty())
+    {
+        cout << out.top() << " ";
+        out.pop();
+    }
+}
+
+
+int main(int argc, char const *argv[])
+{
+    struct node *root = NULL;
+    root = new node();
+    root->data = 1;
+    root->left = new node();
+    root->left->data = 2;
+    root->right = new node();
+    root->right->data = 3;
+    root->left->left = new node();
+    root->left->left->data = 4;
+    root->left->right = new node();
+    root->left->right->data = 5;
+    root->right->left = new node();
+    root->right->left->data = 6;
+    root->right->right = new node();
+    root->right->right->data = 7;
+
+    node *root1 = root;
+    cout<<"Preorder traversal of binary tree using call stack is \n";
+    preorder(root1);
+    cout<<endl;
+
+    node *root2 = root;
+    cout<<"Preorder traversal of binary tree using stack DS is \n";
+    preorder_stack(root2);
+    cout<<endl;
+
+    node *root3 = root;
+    cout<<"Inorder traversal of binary tree using call stack is \n";
+    inorder(root3);
+    cout<<endl;
+
+    node *root4 = root;
+    cout<<"Inorder traversal of binary tree using stack DS is \n";
+    inorder_stack(root4);
+    cout<<endl;
+
+    node *root5 = root;
+    cout<<"Postorder traversal of binary tree using call stack is \n";
+    postorder(root5);
+    cout<<endl;
+
+    node *root6 = root;
+    cout<<"Postorder traversal of binary tree using stack DS is \n";
+    postorder_stack(root6);
+    cout<<endl;
+
+
+
+    return 0;
 }
