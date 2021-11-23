@@ -13,7 +13,7 @@ void rearrangeEvenOdd(Node *head)
        //even then head pointer is pointing to the odd part
        //otherwise it will be pointing to even part
        
-       while(head and head->next)
+       while(head->next)
        {
            count++;
            
