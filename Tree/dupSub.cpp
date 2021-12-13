@@ -1,9 +1,8 @@
-unordered_map<string,int> um;
-    string solve(Node* root)
+string solve(Node* root,unordered_map<string,int> &um)
     {
     
         if(!root)    
-        return "$";
+        return "";
         
         string s = "";
             
@@ -11,8 +10,8 @@ unordered_map<string,int> um;
         return to_string(root->data);
         
         s = s + to_string(root->data);
-        s = s + solve(root->left);
-        s = s + solve(root->right);
+        s = s + solve(root->left,um);
+        s = s + solve(root->right,um);
         
         um[s]++;
         
@@ -21,8 +20,8 @@ unordered_map<string,int> um;
     
     int dupSub(Node *root) {
          // code here
-         
-         solve(root);
+        unordered_map<string,int> um; 
+         solve(root , um);
          
          for(auto a : um)
          if(a.second >= 2) return 1;
