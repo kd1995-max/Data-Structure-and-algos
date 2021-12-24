@@ -1,15 +1,15 @@
-string solve(Node* root , string  s , unordered_map<string,int> &ma , vector<Node*> &ans)
+string solve(Node* root , unordered_map<string,int> &ma , vector<Node*> &ans)
 {
     if(root==NULL)
     return "";
     
-    string left = solve(root->left , s , ma , ans );
-    string right = solve(root->right , s , ma , ans);
+    string left = solve(root->left, ma , ans );
+    string right = solve(root->right, ma , ans);
     
     char parent = root->data ;
-    string res = left;
-    res.push_back(parent);
-    res += right;
+ 
+    string res = left + parent + right;
+ 
     
     if(ma.find(res)!=ma.end())
     {
@@ -35,7 +35,7 @@ vector<Node*> printAllDups(Node* root)
     
     unordered_map<string,int> ma;
     
-    solve(root , "" , ma , ans );
+    solve(root , ma , ans );
     
     return ans;
     
