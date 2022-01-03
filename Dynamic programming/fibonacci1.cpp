@@ -1,30 +1,22 @@
-#define mod 100000007
-int fib(int n , vector<int> &dp)
-{
-    //Your code here
-    if(dp[n] == -1)
-    {
-        if(n == 0)
-        return 0;
-        if(n == 1)
-        return 1;
+ #define ll long long int
+    #define max 1000000007
+    
+    ll fib(ll n, vector<ll>& dp){
+        if(n <= 1) return n;
         
-        int left = fib(n - 1,dp)%mod;
-        int right = fib(n - 2,dp)%mod;
-
-        int res = (left + right)%mod; 
+        ll first, second;
         
-        dp[n] = res;
-
-        return res;
+        if(dp[n-1] != -1) first = dp[n-1];
+        else first = fib(n-1,dp);
+        
+        if(dp[n-2] != -1) second = dp[n-2];
+        else second = fib(n-2,dp);
+        
+        return dp[n] = (first%max + second%max)%max;
+    }  
+  
+    long long int nthFibonacci(long long int n){
+        
+        vector<ll> dp(n+1,-1);
+        return fib(n,dp);
     }
-
-    return dp[n];
-}
-
-int fibonacci(int n)
-{
-    // Your code here
-    vector<int> dp(n + 1, -1);
-    return fib(n, dp);
-}   
