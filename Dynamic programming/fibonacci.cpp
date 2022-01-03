@@ -1,3 +1,4 @@
+#define mod 100000007
 int fib(int n , vector<int> &dp)
 {
     //Your code here
