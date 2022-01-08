@@ -4,6 +4,12 @@ using namespace std;
 
 int helper(string arr)
 {
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int helper(string arr)
+{
 	int count_one = 0;
 	int count_zero = 0;
 	int count = 0;
@@ -22,9 +28,12 @@ int helper(string arr)
 		if(count_one == count_zero)
 		{
 			count++;
-			count_one = 0;
-			count_zero = 0;
 		}
+	}
+	
+	if(count_one != count_zero)
+	{
+		return -1;
 	}
 
 	return count;
