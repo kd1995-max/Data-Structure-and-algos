@@ -1,25 +1,24 @@
-int memo[1001][1001];
-    
-    int solve(int wt[], int val[], int w, int n)
-    {
-        
-        if(n == 0 || w == 0)
-        return 0;
-        
-        if(memo[n][w] != -1)
-        return memo[n][w];
-        
-        if(wt[n - 1] <= w)
-        return memo[n][w] = max(val[n - 1] + solve(wt,val,w - wt[n-1],n-1) , solve(wt,val,w,n - 1));
-        
-        else if(wt[n-1] > w)
-        return memo[n][w] = solve(wt,val,w,n - 1);
-        
-    }
-    
-    int knapSack(int W, int wt[], int val[], int n) 
-    { 
-       // Your code here
-       memset(memo, - 1 , sizeof(memo));
-       return solve(wt,val,W,n);
-    }
+int knapSack(int w, int wt[], int val[], int n) { 
+      int dp[n+1][w+1];
+      
+      for(int i=0; i<=n; i++)
+      {
+          for(int j=0; j<=w; j++)
+          {
+              if(i==0||j==0) 
+              dp[i][j]=0;
+          }
+      }
+      
+      for(int i=1; i<=n; i++)
+      {
+          for(int j=1; j<=w; j++)
+          {
+              if(wt[i-1] > j) 
+              dp[i][j]=dp[i-1][j];
+              else 
+              dp[i][j]=max(dp[i-1][j], val[i-1]+dp[i-1][j-wt[i-1]]);
+          }
+      }
+      return dp[n][w];
+   }
