@@ -1,5 +1,5 @@
-Node *newHead = NULL;
-void inorder(node* curr, node*& prev)
+
+void inorder(node* curr, node*& prev,node*& newHead)
 {
 	if(!curr)
 	return;
@@ -23,7 +23,9 @@ node* flatten(node* root)
 	
 	node* prev = dummy;
 	
-	inorder(parent , prev);
+	Node *newHead = NULL;
+	
+	inorder(parent , prev ,newHead);
 	
 	prev->left = NULL;
 	prev->right = NULL;
