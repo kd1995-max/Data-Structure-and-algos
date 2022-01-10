@@ -1,9 +1,13 @@
+Node *newHead = NULL;
 void inorder(node* curr, node*& prev)
 {
 	if(!curr)
 	return;
 	
 	inorder(curr->left);
+	
+	if(!newHead)
+	newHead = root;
 	
 	prev->left=NULL;
 	prev->right = root;
@@ -24,5 +28,5 @@ node* flatten(node* root)
 	prev->left = NULL;
 	prev->right = NULL;
 	
-	return dummy->right;
+	return newHead;
 }
