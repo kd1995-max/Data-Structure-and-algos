@@ -4,7 +4,7 @@ void inorder(node* curr, node*& prev,node*& newHead)
 	if(!curr)
 	return;
 	
-	inorder(curr->left);
+	inorder(curr->left,prev,newHead);
 	
 	if(!newHead)
 	newHead = root;
@@ -13,7 +13,7 @@ void inorder(node* curr, node*& prev,node*& newHead)
 	prev->right = root;
 	prev = root;
 	
-	inorder(curr->right);
+	inorder(curr->right,prev,newHead);
 }
 
 
