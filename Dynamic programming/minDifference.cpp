@@ -3,8 +3,9 @@ int minDifference(int arr[], int N)
 	    // Your code goes here
 	    int sum = accumulate(arr, arr+N, 0LL);
 	    bool dp[N+1][sum+1];
-	    vector<int> v(sum/2);
+	    vector<int> s1(sum/2);
 	    int mn = INT_MAX;
+	    
 	    for(int i = 0; i <= N; i++)
 	    {
 	        for(int j = 0; j <= sum; j++)
@@ -31,15 +32,15 @@ int minDifference(int arr[], int N)
 	    for(int i = 0; i <= sum/2; i++)
 	    {
 	        if(dp[N][i])
-	            v.push_back(i);
+	            s1.push_back(i);
 	    }
 	    
 	    
-	    for(int i = 0; i < v.size(); i++)
+	    for(int i = 0; i < s1.size(); i++)
 	    {
-	        mn = min(mn, sum-2*v[i]);
+	        mn = min( mn, sum - 2*s1[i] );
 	    }
 	    
 	    return mn;
 	    
-	}
+	} 
