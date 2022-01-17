@@ -20,7 +20,7 @@ int cutRod(int price[], int N) {
         
         for(int i = 1; i <= N; i++)
         {
-            for(int j = 0; j <= N; j++)
+            for(int j = 1; j <= N; j++)
             {
                 if(length[i - 1] > j)
                 dp[i][j] = dp[i - 1][j];
