@@ -1,18 +1,19 @@
+struct CompareHeight {
     bool operator()(pair<int, int> & p1, pair<int, int> & p2)
     {
-
-        if(p1.first==p2.first)
-        {
+        // if same difference then pop bigger first
+        if(p1.first==p2.first){
             return p1.second<p2.second;
         }
+        // pop smaller difference element first
         return p1.first > p2.first;
     }
 };
 
 class Solution{   
 public:
-    vector<int> printKClosest(vector<int> arr, int n, int k, int x) 
-    {
+    vector<int> printKClosest(vector<int> arr, int n, int k, int x) {
+        // code here
         vector<pair<int,int>>v;
         for(int i=0;i<n;i++)
         {
@@ -38,3 +39,4 @@ public:
         }
         return res;
     }
+};
