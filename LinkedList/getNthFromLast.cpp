@@ -8,7 +8,7 @@ int getNthFromLast(Node *head, int n)
        Node *fast = head;
        Node *slow = head;
        
-       for(int jump = 0; jump < n; jump++)
+       for(int jump = 1; jump <= n; jump++)
        {
            if(fast == NULL)
            return -1;
