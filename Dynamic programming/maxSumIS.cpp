@@ -1,4 +1,4 @@
-	int maxSumIS(int arr[], int n)  
+int maxSumIS(int arr[], int n)  
 	{  
 	    // Your code goes here
 	    
@@ -13,12 +13,8 @@
 	            msis[i] = max(msis[i],msis[j] + arr[i]);
 	        }
 	    }
-	    int sum = msis[0];
 	    
-	    for(int i = 1; i < n; i++)
-	    {
-	        sum = max(sum,msis[i]);
-	    }
+	    int sum = *max_element(msis,msis + n);
 	    
 	    return sum;
 	}  
