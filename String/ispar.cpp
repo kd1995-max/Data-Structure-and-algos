@@ -1,25 +1,35 @@
-bool ispar(string x)
+ bool ispar(string x)
     {
         stack<char> st;
-        for(auto a : x){
-            if(a=='['||a=='('||a=='{'){
+        for(auto a : x)
+        {
+            if(a=='['||a=='('||a=='{')
+            {
                 st.push(a);
-                continue;
             }
             else
                 {
      
                     if(st.empty()) return false;
-                        if(a == ']' && st.top() == '[') {st.pop();continue;}
-                        if(a == ')' && st.top() == '(') {st.pop();continue;}
-                        if(a == '}' && st.top() == '{') {st.pop();continue;}
-                        else{
+                        if( st.top() == '[' and a == ']') 
+                        {
+                            st.pop();
+                        }
+                        else if(st.top() == '(' and a == ')') 
+                        {
+                            st.pop();
+                        }
+                        else if(st.top() == '{' and a == '}') 
+                        {
+                            st.pop();
+                        }
+                        else
+                        {
                             return false;
                         }                   
      
             }
         }
         return st.empty() == true;
-    
 
     }
