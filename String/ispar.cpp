@@ -10,7 +10,11 @@
             else
                 {
      
-                    if(st.empty()) return false;
+                        if(st.empty()) 
+                        {
+                           return false;
+                        }
+             
                         if( st.top() == '[' and a == ']') 
                         {
                             st.pop();
