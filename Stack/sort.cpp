@@ -1,8 +1,10 @@
 void insertAtCorrectPosition(int x,stack<int> &s)
 {
-    if(s.size() == 0 or s.top() < x)    
-    s.push(x);
-    
+    if(s.size() == 0 or s.top() < x)  
+    {
+        s.push(x);    
+        return;
+    }
     else
     {
         int a = s.top();
@@ -16,13 +18,14 @@ void insertAtCorrectPosition(int x,stack<int> &s)
 
 void reverse(stack<int> &s)
 {
-    if(s.size() > 0)    
-    {
-        int x = s.top();
-        s.pop();
-        reverse(s);
-        insertAtCorrectPosition(x,s);
-    }
+    if(s.size() == 0)    
+    return;
+    
+    int x = s.top();
+    s.pop();
+    reverse(s);
+    insertAtCorrectPosition(x,s);
+    
 }
 
 void SortedStack :: sort()
