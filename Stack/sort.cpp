@@ -5,15 +5,11 @@ void insertAtCorrectPosition(int x,stack<int> &s)
         s.push(x);    
         return;
     }
-    else
-    {
+
         int a = s.top();
         s.pop();
         insertAtCorrectPosition(x,s);
         s.push(a);
-    }
-    
-    
 }
 
 void reverse(stack<int> &s)
