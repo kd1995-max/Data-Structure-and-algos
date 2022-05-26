@@ -47,7 +47,6 @@ ListNode* segregate(ListNode* head, int idx)
   sp->next = pivot;
   pivot->next = greater->next;
   gp->next = nullptr;
-  sp = sp->next;
 
   return smaller->next;
 }
