@@ -14,3 +14,22 @@ int longestSubstrDistinctChars (string s)
     }
     return res;
 }
+
+//
+int longestSubstrDistinctChars (string str)
+{
+    // your code here
+    int start = -1, maxLen = 0;
+    vector<int> dic(256,-1);
+    
+    for(int i = 0; i < str.length(); i++)
+    {
+        if(dic[str[i]] > start)    
+        start = dic[str[i]];
+        
+        dic[str[i]] = i;
+        
+        maxLen = max(maxLen, i - start);
+    }
+    return maxLen;
+}
