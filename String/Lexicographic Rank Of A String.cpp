@@ -1,43 +1,46 @@
-const long long mod = 1000000007;
-    
-    long long  factorial(long long  n)
+int findRank(string s) 
     {
-       if(n==0||n==1){
-           return 1;
-       }
-       return (n*factorial(n-1))%mod ;
-    }
-    int findRank(string S) 
-    {
-        //Your code here
-        long long res=1;
-        long long  n=S.length();
-        int count[256]={0};
-       for(int i=0;i<n;i++)
+        int m=1000000007;
+       long long freq[256]={0};
+
+     //Used an array to store all the possible factorials in advance
+       long long fact[26];
+       fact[0]=1;
+       fact[1]=1;
+       for(int i=2;i<26;i++)
        {
-        
-        //for repeting
-          if(count[S[i]]==1){
-              return 0;
-          }
-           count[S[i]]++;
-           
+            //Make sure to store the mod of the factorials 
+           fact[i]=(i*fact[i-1])%m;
        }
-       
-        for(int i=1;i<256;i++)
-        {
-           count[i]+=count[i-1];   
-        }
-        
-        for(int i=0;i<n-1;i++)
-        {
-            res=res+(count[S[i]-1]*factorial(n-i-1))%mod;
-            res%=mod;
-            for(int j=S[i];j<256;j++)
-            {
-               count[j]--;
-            }
-        }  
-    
-    return res%mod;
+       for(int i=0;i<s.length();i++)
+       {
+        //Edge case for repeating character
+           if(freq[s[i]]==1){
+               return 0;
+           }
+           freq[s[i]]++;
+       }
+       long long res=0;
+       for(int i=0;i<s.length();i++)
+       {
+           int cnt=0;
+           for(int j=0;j<256;j++)
+           {
+               
+               if(j==s[i])
+               {
+                   break;
+               }
+               
+               if(freq[j]==1)
+               {
+                   cnt++;
+               }
+               
+           }
+           
+           freq[s[i]]=0;
+           res += ( cnt * fact[s.length()-i-1]) % m;
+       }
+       return res+1;
     }
