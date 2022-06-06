@@ -20,3 +20,10 @@ int strstr(string s, string x)
      
      return -1;
 }
+// 
+int strstr(string s, string x)
+{
+     //Your code here
+     auto found = s.find(x);
+     return (found == string::npos)? -1 : found;
+}
