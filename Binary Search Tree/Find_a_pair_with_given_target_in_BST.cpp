@@ -1,25 +1,27 @@
-class Solution{
-  public:
-    // root : the root Node of the given BST
-    // target : the target sum
-    int TragetSum(Node *root , int sum, unordered_set<int> &s)
+void solve(Node* root,int target,unordered_set<int> &s,int &f)
     {
-        if(root == NULL)
-        return 0;
+        if(!root)
+        return;
         
-        if(TragetSum(root->left , sum, s) == 1)
-        return 1;
-        if(s.find(sum - root->data) != s.end())
-        return 1;
+        solve(root->left,target,s,f);
+        
+        if(s.find(target - root->data) != s.end())
+        {
+           f=1;
+           return;
+        }
         else
-        s.insert(root->data);
+        {
+           s.insert(root->data);
+        }
         
-        return TragetSum(root->right, sum, s);
+        solve(root->right,target, s,f);
     }
     int isPairPresent(struct Node *root, int target)
     {
     //add code here.
-    unordered_set<int> s;
-    return TragetSum(root, target, s);
+        int flag = 0;
+        unordered_set<int> s;
+        solve(root,target,s,flag);
+        return flag;
     }
-};
