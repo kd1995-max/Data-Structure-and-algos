@@ -7,15 +7,15 @@ void solve(Node* root,int target,unordered_set<int> &s,int &f)
         
         if(s.find(target - root->data) != s.end())
         {
-           f=1;
-           return;
+            f = 1;
+            return;
         }
         else
         {
-           s.insert(root->data);
+            s.insert(root->data);
         }
         
-        solve(root->right,target, s,f);
+        solve(root->right,target,s,f);
     }
     int isPairPresent(struct Node *root, int target)
     {
