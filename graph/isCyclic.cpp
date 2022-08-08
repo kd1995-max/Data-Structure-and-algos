@@ -38,7 +38,8 @@ bool solve(int node , vector<bool> &vis , vector<bool> &dfsVis , vector<int> adj
         return false;
     }
 // BFS - using Kahn's Algo
-vector<int> indegree(V + 1 , 0);
+bool isCyclic(int V, vector<int> adj[]) {
+        vector<int> indegree(V + 1 , 0);
 	    
 	    for(int i = 0; i < V; i++)
 	    {
@@ -57,11 +58,13 @@ vector<int> indegree(V + 1 , 0);
 	        }
 	    }
 	    
+	    int cnt = 0;
 	    vector<int> topo;
 	    while(!q.empty())
 	    {
 	        int node = q.front();
 	        q.pop();
+	        cnt++;
 	        
 	        topo.push_back(node);
 	        
@@ -74,4 +77,8 @@ vector<int> indegree(V + 1 , 0);
 	        }
 	    }
 	    
-	    return topo;
+	    if(cnt == V)
+	    return false;
+	    
+	    return true;
+    }
