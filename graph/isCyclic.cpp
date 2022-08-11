@@ -59,14 +59,12 @@ bool isCyclic(int V, vector<int> adj[]) {
 	    }
 	    
 	    int cnt = 0;
-	    vector<int> topo;
+
 	    while(!q.empty())
 	    {
 	        int node = q.front();
 	        q.pop();
 	        cnt++;
-	        
-	        topo.push_back(node);
 	        
 	        for(auto it : adj[node])
 	        {
