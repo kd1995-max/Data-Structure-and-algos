@@ -1,4 +1,4 @@
-    vector <int> dijkstra(int V, vector<vector<int>> adj[], int source)
+vector <int> dijkstra(int V, vector<vector<int>> adj[], int source)
     {
         // Code here
         vector<pair<int,int>> g[V + 1];
@@ -27,29 +27,10 @@
             int dist = pq.top().first;
             int node = pq.top().second;
             pq.pop();
-            
-            // way 1
-            // for(auto it = g[node].begin(); it!=g[node].end(); it++)
-            // {
-            //     int nextNode = it->first;
-            //     int nextDist = it->second;
-                
-            //     if(distTo[nextNode] > nextDist + dist)
-            //     {
-            //         distTo[nextNode] = nextDist + dist;
-                    
-            //         pq.push(make_pair(distTo[nextNode],nextNode));
-            //     }
-            // }
-            
-            // way 2
-            vector<pair<int,int>> it = g[node];
-            int n = it.size();
-            
-            for(int i = 0; i < n; i++)
+            for(auto it : g[node])
             {
-                int nextNode = it[i].first;
-                int nextDist = it[i].second;
+                int nextNode = it.first;
+                int nextDist = it.second;
                 
                 if(distTo[nextNode] > nextDist + dist)
                 {
