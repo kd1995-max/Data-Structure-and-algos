@@ -1,21 +1,21 @@
-void solve(int i,int j,vector<vector<bool>>&vis,vector<vector<char>>& grid)
+void dfs(int i,int j,vector<vector<bool>>&vis,vector<vector<char>>& grid)
     {
         if(i<0||j<0||i>=grid.size()||j>=grid[0].size()||grid[i][j]=='0'||vis[i][j]==1)
         {
             return;
         }
  
-        vis[i][j]=1;
+        vis[i][j]=true;
  
-        solve(i+1,j,vis,grid);
-        solve(i,j+1,vis,grid);
-        solve(i,j-1,vis,grid);
-        solve(i-1,j,vis,grid);
+        dfs(i+1,j,vis,grid);//down
+        dfs(i,j+1,vis,grid);//right
+        dfs(i,j-1,vis,grid);//left
+        dfs(i-1,j,vis,grid);//up
         
-        solve(i+1,j+1,vis,grid);
-        solve(i-1,j+1,vis,grid);
-        solve(i-1,j-1,vis,grid);
-        solve(i+1,j-1,vis,grid);
+        dfs(i+1,j+1,vis,grid);//down right
+        dfs(i-1,j+1,vis,grid);//up right
+        dfs(i-1,j-1,vis,grid);//up left
+        dfs(i+1,j-1,vis,grid);//down left
  
     }
  
@@ -23,9 +23,10 @@ void solve(int i,int j,vector<vector<bool>>&vis,vector<vector<char>>& grid)
     {
         int row=grid.size();
         int col=grid[0].size();
+       
         int count=0;
  
-        vector<vector<bool>>vis(row,vector<bool>(col, 0));
+        vector<vector<bool>>vis(row,vector<bool>(col, false));
  
         for(int i=0;i<grid.size();i++)
         {
@@ -33,7 +34,7 @@ void solve(int i,int j,vector<vector<bool>>&vis,vector<vector<char>>& grid)
             {
                 if(grid[i][j]=='1'&&vis[i][j]==0)
                 {
-                    solve(i,j,vis,grid);
+                    dfs(i,j,vis,grid);
                     count++;
                 }
             }
