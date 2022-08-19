@@ -1,34 +1,15 @@
-    bool isValid(int i , int j,vector<vector<char>> &mat,int n,int m)
+void dfs(int i , int j, vector<vector<char>> &mat,int n , int m)
     {
-        if(i >= 0 and i < n and j >= 0 and j < m and mat[i][j] == 'X')
-        return true;
+        if(i < 0 or i >= n or j < 0 or j >= m or mat[i][j] == 'O')
+        return;
         
-        return false;
-    }
-    
-    void dfs(int i , int j, vector<vector<char>> &mat,int n , int m)
-    {
         mat[i][j] = 'O';
         
-        if(isValid(i,j-1,mat,n,m))
-        {
-            dfs(i,j-1,mat,n,m);
-        }
+        dfs(i,j-1,mat,n,m);
+        dfs(i-1,j,mat,n,m);
+        dfs(i,j+1,mat,n,m);
+        dfs(i+1,j,mat,n,m);
         
-        if(isValid(i-1,j,mat,n,m))
-        {
-            dfs(i-1,j,mat,n,m);
-        }
-        
-        if(isValid(i,j+1,mat,n,m))
-        {
-            dfs(i,j+1,mat,n,m);
-        }
-        
-        if(isValid(i+1,j,mat,n,m))
-        {
-            dfs(i+1,j,mat,n,m);
-        }
     }
     
     int xShape(vector<vector<char>>& grid) 
