@@ -2,14 +2,9 @@ bool validPath(int n, vector<vector<int>>& edges, int source, int destination)
     {
         vector<int> adj[n+1];
         for(auto x:edges)
-        {
-            vector<int> temp = x;
-            
-            int u = temp[0];
-            int v = temp[1];
-            
-            adj[u].push_back(v);
-            adj[v].push_back(u);
+        {      
+            adj[x[0]].push_back(x[1]);
+            adj[x[1]].push_back(x[0]);
         }
         
         vector<bool> visited(n + 1, false);
