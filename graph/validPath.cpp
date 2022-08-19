@@ -1,9 +1,6 @@
-class Solution {
-public:
-    
-    bool validPath(int n, vector<vector<int>>& edges, int source, int destination)
+bool validPath(int n, vector<vector<int>>& edges, int source, int destination)
     {
-        unordered_map<int,vector<int>> umap;
+        vector<int> adj[n+1];
         for(auto x:edges)
         {
             vector<int> temp = x;
@@ -11,8 +8,8 @@ public:
             int u = temp[0];
             int v = temp[1];
             
-            umap[u].push_back(v);
-            umap[v].push_back(u);
+            adj[u].push_back(v);
+            adj[v].push_back(u);
         }
         
         vector<bool> visited(n + 1, false);
@@ -26,7 +23,7 @@ public:
             int u = q.front();
             q.pop();
             
-            for(auto a : umap[u])
+            for(auto a : adj[u])
             {
                 if(!visited[a])
                 {
@@ -38,4 +35,3 @@ public:
         
         return visited[destination];
     }
-};
