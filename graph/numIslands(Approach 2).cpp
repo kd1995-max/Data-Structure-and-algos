@@ -1,4 +1,4 @@
-void dfs(int i,int j,vector<vector<bool>>&vis,vector<vector<char>>& grid)
+    void dfs(int i,int j,vector<vector<bool>>&vis,vector<vector<char>>& grid)
     {
         if(i<0||j<0||i>=grid.size()||j>=grid[0].size()||grid[i][j]=='0'||vis[i][j]==1)
         {
@@ -28,9 +28,9 @@ void dfs(int i,int j,vector<vector<bool>>&vis,vector<vector<char>>& grid)
  
         vector<vector<bool>>vis(row,vector<bool>(col, false));
  
-        for(int i=0;i<grid.size();i++)
+        for(int i=0;i<row;i++)
         {
-            for(int j=0;j<grid[i].size();j++)
+            for(int j=0;j<col;j++)
             {
                 if(grid[i][j]=='1'&&vis[i][j]==0)
                 {
