@@ -1,4 +1,4 @@
-#define Tupple pair<int,pair<int,int>>
+    #define Tupple pair<int,pair<int,int>>
     
     int minimumCostPath(vector<vector<int>>& grid) 
     {
