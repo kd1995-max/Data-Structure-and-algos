@@ -1,15 +1,9 @@
-    bool isValid(int i, int j,vector<vector<int>> &m, int n)
+void solve(int i, int j , vector<vector<int>> &m,vector<string> &ans, int n, string str)
     {
-        if(i>=0 and j >= 0 and i < n and j < n and (m[i][j] == 1))
-        {
-            return true;
-        }
+        if(i < 0 or j < 0 or i >= n or j >= n or (m[i][j] == 0))
+            return;
         
-        return false;
-    }
-    
-    void solve(int i, int j , vector<vector<int>> &m,vector<string> &ans, int n, string str)
-    {
+        
         if(i == (n - 1) && j == (n - 1) )
         {
             ans.push_back(str);
@@ -18,19 +12,15 @@
         
         m[i][j] = 0;
         
-        if(isValid(i-1,j,m,n))
-            solve(i-1,j,m,ans,n,str + 'U');
-        if(isValid(i,j+1,m,n))
-            solve(i,j + 1, m , ans , n , str + 'R');
-        if(isValid(i+1,j,m,n))
-            solve(i + 1,j, m , ans , n , str + 'D');
-        if(isValid(i,j-1,m,n))
-            solve(i,j - 1, m , ans , n , str + 'L');
+        
+        solve(i-1,j,m,ans,n,str + 'U');
+        solve(i,j + 1, m , ans , n , str + 'R');
+        solve(i + 1,j, m , ans , n , str + 'D');
+        solve(i,j - 1, m , ans , n , str + 'L');
         
         m[i][j] = 1;
         
         
-        return;
     }
     vector<string> findPath(vector<vector<int>> &m, int n) {
         // Your code goes here
