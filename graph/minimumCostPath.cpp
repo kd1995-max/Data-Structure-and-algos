@@ -1,19 +1,13 @@
-	bool isSafe(int x , int y , int n)
-	{
-	    if(x >= 0 and x < n and y >= 0 and y < n)
-	    return true;
-	    
-	    return false;
-	}
-	
+#define Tupple pair<int,pair<int,int>>
+    
     int minimumCostPath(vector<vector<int>>& grid) 
     {
         // Code here
         int n = grid.size();
         
         vector<vector<int>> costs(n,vector<int>(n,INT_MAX));
-        
-        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>, greater<pair<int,pair<int,int>>>> pq;
+        // <wt,x,y>
+        priority_queue< Tupple ,vector<Tupple>, greater<Tupple> > pq;
         
         costs[0][0] = grid[0][0];
         
@@ -24,7 +18,7 @@
         
         while(!pq.empty())
         {
-            pair<int,pair<int,int>> p = pq.top();
+            Tupple p = pq.top();
             pq.pop();
             
             int wt = p.first;
@@ -36,7 +30,7 @@
                 int xn = xo + dx[i];
                 int yn = yo + dy[i];
                 
-                if(isSafe(xn,yn,n))            
+                if(xn >= 0 and xn < n and yn >= 0 and yn < n)            
                 {
                     if(costs[xn][yn] > wt + grid[xn][yn])
                     {
@@ -46,5 +40,6 @@
                 }
             }
         }
+        
         return costs[n-1][n-1];
     }
