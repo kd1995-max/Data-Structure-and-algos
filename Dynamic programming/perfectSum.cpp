@@ -16,7 +16,7 @@
         }
         for(int i=1;i<=n;i++)
         {
-            for(int j=0;j<=sum;j++)
+            for(int j=0;j<=sum;j++)//start from j = 0 so as to include 0 as a sum as well
             {
                 if(arr[i-1]>j)
                 dp[i][j]=dp[i-1][j]%mod;
