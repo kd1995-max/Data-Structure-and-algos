@@ -1,68 +1,59 @@
-int lengthOfLIS(vector<int>& nums) 
-    {
-        int n = nums.size();
-        vector<int> dp(n+1 , 1);
-        
-        for(int curr = 0; curr < n; curr++)
-        {
-            for(int prev = 0; prev <= curr; prev++)
-            {
-                if(nums[prev] < nums[curr])
-                {
-                    dp[curr] = max(1 + dp[prev], dp[curr]);
-                }
-            }
-        }
-        
-        int ans = -1;
+#include <bits/stdc++.h>
+using namespace std;
+
+int longestIncreasingSubsequence(int arr[], int n){
     
-        for(int i=0; i<=n-1; i++){
-            ans = max(ans, dp[i]);
-        }
-
-        return ans;
-    }
-
-// Printing
-    int lengthOfLIS(vector<int>& nums) 
-    {
-        int n = nums.size();
-        vector<int> dp(n+1 , 1);
-        vector<int> hash(n+1 , 1);        
-        for(int curr = 0; curr < n; curr++)
-        {
-            hash[curr] = curr;
-            for(int prev = 0; prev <= curr; prev++)
-            {
-                if(nums[prev] < nums[curr] and 1 + dp[prev] > dp[curr])
-                {
-                    dp[curr] = 1 + dp[prev];
-                    hash[curr] = prev;
-                }
+    vector<int> dp(n,1);
+    vector<int> hash(n,1);
+    
+    for(int i=0; i<=n-1; i++){
+        
+        hash[i] = i; // initializing with current index
+        for(int prev_index = 0; prev_index <=i-1; prev_index ++){
+            
+            if(arr[prev_index]<arr[i] && 1 + dp[prev_index] > dp[i]){
+                dp[i] = 1 + dp[prev_index];
+                hash[i] = prev_index;
             }
         }
-        
-        int ans = -1;
-        int lastIndex = -1;
-        
-        for(int i=0; i<n; i++)
-        {
-            if(dp[i] > ans)
-            {
-                ans = dp[i];
-                lastIndex = i;
-            }
-        }
-        
-        vector<int> temp;
-        temp.push_back(nums[lastIndex]);
-        
-        while(hash[lastIndex] != lastIndex)
-        {
-            lastIndex = hash[lastIndex];
-            temp.push_back(nums[lastIndex]);
-        }
-        
-        reverse(temp.begin(),temp.end());
-        return ans;
     }
+    
+    int ans = -1;
+    int lastIndex =-1;
+    
+    for(int i=0; i<=n-1; i++){
+        if(dp[i]> ans){
+            ans = dp[i];
+            lastIndex = i;
+        }
+    }
+    
+    vector<int> temp;
+    temp.push_back(arr[lastIndex]);
+    
+    while(hash[lastIndex] != lastIndex){ // till not reach the initialization value
+        lastIndex = hash[lastIndex];
+        temp.push_back(arr[lastIndex]);    
+    }
+    
+    // reverse the array 
+    reverse(temp.begin(),temp.end());
+    
+    cout<<"The subsequence elements are ";
+    
+    for(int i=0; i<temp.size(); i++){
+        cout<<temp[i]<<" ";
+    }
+    cout<<endl;
+    
+    return ans;
+}
+
+int main() {
+	
+	int arr[] = {10,9,2,5,3,7,101,18};
+	
+	int n = sizeof(arr)/sizeof(arr[0]);
+	longestIncreasingSubsequence(arr,n);
+	return 0;
+}
