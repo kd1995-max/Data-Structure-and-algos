@@ -1,28 +1,47 @@
-bool check_sum(vector<int> &temp, int &up, int &down, int k){
-      
-      unordered_map<int,int> mp;
-      mp[0] = -1;
-      int sum = 0;
-      int maxLen = 0;
-      
-      for(int i = 0; i < temp.size(); i++)
-      {
-          sum += temp[i];
-          
-          if(mp.find(sum-k) != mp.end())
-          {
-              if(i-mp[sum-k] > maxLen)
-              {
-                  maxLen = i - mp[sum-k];
-                  up = i - maxLen + 1; // just think about it
-                  down = i;
-              }
-          }
-          
-          else mp[sum] = i;
-      }
-      return (maxLen != 0);
-  }
+bool maxLen(vector<int> &temp, int &up, int &down)
+    {   
+        // Your code here
+        map<int, int> presum;
+        int sum = 0; 
+        
+            int max_length = 0;
+        
+            for (int i = 0; i < temp.size(); i++)
+            {
+                sum += temp[i];
+        
+                
+                if (sum == 0)
+                {
+                    if (max_length < i + 1)
+                    {
+                        up = 0;
+                        down = i;
+                    }
+                    max_length = i + 1;
+                }
+        
+                
+                if (presum.find(sum) != presum.end())
+                {
+        
+                    int old = max_length;
+        
+                    max_length = max(max_length, i - presum[sum]);
+        
+                    if (old < max_length)
+                    {
+                        down = i;
+                        up = presum[sum] + 1;
+                    }
+                }
+                else
+                    presum[sum] = i;
+            }
+        
+        
+            return (max_length != 0);
+    }    
   vector<vector<int>> sumZeroMatrix(vector<vector<int>> mat){
      // as question if area is same what we have to do 
      // means either more column will be preferable or more row..here more column is preferable
@@ -43,7 +62,7 @@ bool check_sum(vector<int> &temp, int &up, int &down, int k){
                  temp[i] += mat[i][right];
              }
              
-            bool sum = check_sum(temp,up,down,0);
+            bool sum = maxLen(temp,up,down);
             
             int area = (down - up + 1)*(right - left + 1);
             
