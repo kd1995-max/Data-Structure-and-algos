@@ -1,22 +1,19 @@
-    int solve(int i , int arr[], int n,vector<int> &dp)
+int jump(int nums[], int pos,int n,vector<int> &dp) 
     {
-        if(i >= n - 1)    
-        return 0;
-        
-        int ans = 1e9;
-        
-        if(dp[i] != -1)
-        return dp[i];
-        
-        for(int s = 1; i < n && s <= arr[i]; s++)
-        {
-            int jump = solve(s + i, arr, n,dp) + 1;
-            
-            ans = min(ans , jump);
-        }
-        
-        return dp[i] = ans;
-    }
+	if(pos >= n - 1) return 0;        
+	int minJumps = 1e9;  // initialising to max possible jumps + 1
+	
+	if(dp[pos] != -1)
+	return dp[pos];
+	
+	for(int j = 1; j <= nums[pos]; j++)  // explore all possible jump sizes from current position
+		{
+		    int jumps = jump(nums, pos + j,n,dp);
+		    minJumps = min(minJumps, 1 + jumps);
+		}
+	
+	return dp[pos] = minJumps;
+}
     
     int minJumps(int arr[], int n){
         // Your code here
@@ -27,7 +24,7 @@
         return -1;
         
         vector<int> dp(n+1,-1);
-        int ans = solve(0,arr,n,dp);
+        int ans = jump(arr,0,n,dp);
         if(ans == 1e9)
         return -1;
         else return ans;
