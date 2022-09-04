@@ -1,4 +1,5 @@
-    int bellNumber(int n)
+//bell triangle    
+int bellNumber(int n)
     {
        // Code Here
        long long dp[n+1][n+1];
