@@ -1,3 +1,6 @@
+//https://www.geeksforgeeks.org/compute-ncr-p-set-3-using-fermat-little-theorem/
+//https://www.youtube.com/watch?v=aGjfSTr_0AE
+
 // A modular inverse based solution to
 // compute nCr % p
 #include <bits/stdc++.h>
