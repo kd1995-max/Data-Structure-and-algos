@@ -1,3 +1,5 @@
+//https://www.geeksforgeeks.org/calculate-ncr-using-pascals-triangle/#:~:text=Approach%3A%20The%20idea%20is%20to,of%20n%20elements%20is%200
+
 int nCr(int n, int k){
         // code here
         if(n < k)
